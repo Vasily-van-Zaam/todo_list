@@ -40,8 +40,6 @@ class TodoScreenModel extends ElementaryModel implements ITodoScreenModel {
     super.init();
     _updateTodoState(_todoBloc.state);
     _todoBocSubscription = _todoBloc.stream.listen(_updateTodoState);
-    final f = _todoBloc.stream;
-
     _todoBloc.add(const GetListTodo());
   }
 
@@ -101,7 +99,7 @@ class TodoScreenModel extends ElementaryModel implements ITodoScreenModel {
     _todoBloc.add(AddTodo(todo));
   }
 
-  /// add a new 'Todo
+  @override
   void deleteTodo(String id) {
     _todoBloc.add(DeleteTodo(id));
   }

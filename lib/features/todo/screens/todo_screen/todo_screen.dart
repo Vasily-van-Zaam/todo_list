@@ -33,60 +33,57 @@ class TodoScreenWidget extends ElementaryWidget<ITodoScreenWidgetModel> {
                 child: Text('The List is Empty'),
               )
             else
-              Center(
-                child: SingleChildScrollView(
-                  child: Center(
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      height: MediaQuery.of(context).size.height - 80,
-                      child: ListView.separated(
-                        itemBuilder: (context, index) {
-                          final t = todoList[index];
-                          return ListTile(
-                            onTap: wm.editTodo(t.id),
-                            contentPadding: const EdgeInsets.only(left: 16),
-                            dense: true,
-                            leading: const Icon(Icons.text_snippet),
-                            title: Text('${t.title}'),
-                            subtitle: Text('${t.body}'),
-                            trailing: SizedBox(
-                              width: 50,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  IconButton(
-                                    onPressed: wm.showDialogMessage(
-                                      AlertDialog(
-                                        title: const Text('Delete todo'),
-                                        content: Text(
-                                            'Do you want to delete ${t.title}?'),
-                                        actions: [
-                                          OutlinedButton(
-                                            onPressed:
-                                                wm.deleteTodo(t.id ?? ''),
-                                            child: const Text('Yes'),
-                                          ),
-                                          OutlinedButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: const Text('No'),
-                                          ),
-                                        ],
-                                      ),
+              SingleChildScrollView(
+                child: Center(
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    height: MediaQuery.of(context).size.height - 80,
+                    child: ListView.separated(
+                      itemBuilder: (context, index) {
+                        final t = todoList[index];
+                        return ListTile(
+                          onTap: wm.editTodo(t.id),
+                          contentPadding: const EdgeInsets.only(left: 16),
+                          dense: true,
+                          leading: const Icon(Icons.text_snippet),
+                          title: Text('${t.title}'),
+                          subtitle: Text('${t.body}'),
+                          trailing: SizedBox(
+                            width: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                IconButton(
+                                  onPressed: wm.showDialogMessage(
+                                    AlertDialog(
+                                      title: const Text('Delete todo'),
+                                      content: Text(
+                                          'Do you want to delete ${t.title}?'),
+                                      actions: [
+                                        OutlinedButton(
+                                          onPressed: wm.deleteTodo(t.id ?? ''),
+                                          child: const Text('Yes'),
+                                        ),
+                                        OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('No'),
+                                        ),
+                                      ],
                                     ),
-                                    icon: const Icon(Icons.delete),
                                   ),
-                                ],
-                              ),
+                                  icon: const Icon(Icons.delete),
+                                ),
+                              ],
                             ),
-                          );
-                        },
-                        itemCount: todoList.length,
-                        separatorBuilder: (context, index) {
-                          return const Divider();
-                        },
-                      ),
+                          ),
+                        );
+                      },
+                      itemCount: todoList.length,
+                      separatorBuilder: (context, index) {
+                        return const Divider();
+                      },
                     ),
                   ),
                 ),

@@ -46,7 +46,7 @@ class TodoScreenWidgetModel
     extends WidgetModel<TodoScreenWidget, ITodoScreenModel>
     implements ITodoScreenWidgetModel {
   ///
-  TodoScreenWidgetModel(TodoScreenModel model) : super(model);
+  TodoScreenWidgetModel(ITodoScreenModel model) : super(model);
 
   ////
   TodoViewState get todoState =>

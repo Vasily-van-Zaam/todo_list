@@ -45,6 +45,7 @@ class TodoServiceImp extends ITodoService {
 
   @override
   Future<void> removeTodo(String? id) async {
+    // throw Exception('ERROR DELETE');
     await Future.delayed(const Duration(milliseconds: _delayed));
     _listTodo.removeWhere((t) => t.id == id);
     notifyListeners();

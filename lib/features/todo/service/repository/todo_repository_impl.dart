@@ -6,14 +6,14 @@ import 'package:todo_list/features/todo/domain/repository/todo_repository.dart';
 
 ////
 class TodoRepositoryImpl extends ITodoRepository {
-  final ITodoService _totService;
+  final ITodoService _todoService;
 
   ///
-  TodoRepositoryImpl(ITodoService todoService) : _totService = todoService;
+  TodoRepositoryImpl(ITodoService todoService) : _todoService = todoService;
   @override
   Future<Either<Exception, Todo>> addTodo(Todo todo) async {
     try {
-      final newTodo = await _totService.addTodo(todo);
+      final newTodo = await _todoService.addTodo(todo);
       return Right(newTodo);
     } on Exception catch (err) {
       return Left(err);
@@ -23,7 +23,7 @@ class TodoRepositoryImpl extends ITodoRepository {
   @override
   Future<Either<Exception, dynamic>> editTodo(Todo todo) async {
     try {
-      await _totService.editTodo(todo);
+      await _todoService.editTodo(todo);
       return const Right(null);
     } on Exception catch (err) {
       return Left(err);
@@ -33,7 +33,7 @@ class TodoRepositoryImpl extends ITodoRepository {
   @override
   Future<Either<Exception, List<Todo>>> getListTodo() async {
     try {
-      final resp = await _totService.getTodoList();
+      final resp = await _todoService.getTodoList();
       if (resp is List<Todo>) {
         return Right(resp);
       }
@@ -46,7 +46,7 @@ class TodoRepositoryImpl extends ITodoRepository {
   @override
   Future<Either<Exception, dynamic>> removeTodo(String id) async {
     try {
-      await _totService.removeTodo(id);
+      await _todoService.removeTodo(id);
       return const Right(null);
     } on Exception catch (err) {
       return Left(err);
@@ -56,7 +56,7 @@ class TodoRepositoryImpl extends ITodoRepository {
   @override
   Future<Either<Exception, Todo>> getTodo(String? id) async {
     try {
-      final resp = await _totService.getTodo(id);
+      final resp = await _todoService.getTodo(id);
       if (resp is Todo) {
         return Right(resp);
       }
